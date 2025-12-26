@@ -46,6 +46,7 @@ export const rootEslintConfig = [
       'packages/**/*.spec.ts',
       'templates/**',
       'examples/**',
+      'saleor-payload/**',
     ],
   },
   {
