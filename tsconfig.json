@@ -4,6 +4,7 @@
     "composite": false,
     "noEmit": true,
     "baseUrl": ".",
+    "rootDir": "."
   },
   "references": [
     {
