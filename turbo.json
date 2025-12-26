@@ -29,5 +29,6 @@
     "lint:fix": {
       "cache": false
     }
-  }
+  },
+  "globalEnv": ["DATABASE_URL", "PAYLOAD_SECRET", "NEXT_PUBLIC_SERVER_URL", "BLOB_READ_WRITE_TOKEN"]
 }
