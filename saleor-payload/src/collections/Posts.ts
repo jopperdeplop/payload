@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { generateContent } from '../hooks/generateContent'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -8,6 +9,9 @@ export const Posts: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    beforeChange: [generateContent],
   },
   fields: [
     {
@@ -39,6 +43,24 @@ export const Posts: CollectionConfig = {
     {
       name: 'content',
       type: 'richText',
+    },
+    {
+      name: 'autoGenerate',
+      type: 'checkbox',
+      label: 'Auto-Generate Content with AI',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'aiPrompt',
+      type: 'textarea',
+      label: 'AI Prompt (Optional - defaults to Title)',
+      admin: {
+        position: 'sidebar',
+        condition: (data) => Boolean(data?.autoGenerate),
+      },
     },
   ],
 }
