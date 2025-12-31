@@ -19,10 +19,33 @@ export const generateContent: CollectionBeforeChangeHook = async ({ data, req, o
     const genAI = new GoogleGenerativeAI(apiKey)
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
 
+    // Fetch relevant products from Payload
+    // We fetch a few items to give the AI context.
+    const productsQuery = await req.payload.find({
+      collection: 'product-variants',
+      limit: 15,
+      depth: 0,
+      sort: '-updatedAt', // Prefer recently updated products
+    })
+
+    const productContext = productsQuery.docs
+      .map((p) => `- ${p.productName} (${p.variantName ? p.variantName : 'Standard'})`)
+      .join('\n')
+
     const topic = data.aiPrompt || data.title
-    const prompt = `Write a comprehensive, engaging blog post about: "${topic}".
-    Format it with a clear introduction, body paragraphs, and a conclusion.
-    Keep it under 1000 words. Do NOT use Markdown formatting like **bold** or # headings, just plain text with line breaks.`
+    const prompt = `
+    Context: You are writing for an e-commerce store that sells the following products:
+    ${productContext}
+
+    Task: Write a comprehensive, engaging blog post about: "${topic}".
+
+    Instructions:
+    1. Write clear, engaging content.
+    2. Naturally mention 1-3 specific products from the list above that are relevant to the topic. Explain why they are good choices.
+    3. Include a "Recommended Products" section at the end listing the products you mentioned.
+    4. Keep it under 1000 words.
+    5. Do NOT use Markdown formatting like **bold** or # headings, just plain text with line breaks (we will format it later).
+    `
 
     console.log(`🤖 Generating content for: ${topic}`)
 
