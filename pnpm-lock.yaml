@@ -1827,6 +1827,9 @@ importers:
 
   saleor-payload:
     dependencies:
+      '@google/generative-ai':
+        specifier: 0.24.1
+        version: 0.24.1
       '@payloadcms/db-postgres':
         specifier: 3.69.0
         version: 3.69.0(@libsql/client@0.15.15(bufferutil@4.1.0)(utf-8-validate@6.0.6))(@opentelemetry/api@1.9.0)(@types/better-sqlite3@7.6.13)(@vercel/postgres@0.10.0(utf-8-validate@6.0.6))(better-sqlite3@12.5.0)(gel@2.2.0)(payload@3.69.0(bufferutil@4.1.0)(graphql@16.8.1)(typescript@5.7.3)(utf-8-validate@6.0.6))
@@ -5081,6 +5084,10 @@ packages:
   '@google-cloud/storage@7.17.2':
     resolution: {integrity: sha512-6xN0KNO8L/LIA5zu3CJwHkJiB6n65eykBLOb0E+RooiHYgX8CSao6lvQiKT9TBk2gL5g33LL3fmhDodZnt56rw==}
     engines: {node: '>=14'}
+
+  '@google/generative-ai@0.24.1':
+    resolution: {integrity: sha512-MqO+MLfM6kjxcKoy0p1wRzG3b4ZZXtPI+z2IE26UogS2Cm/XHO+7gGRBh6gcJsOiIVoH93UwKvW4HdgiOZCy9Q==}
+    engines: {node: '>=18.0.0'}
 
   '@hono/node-server@1.19.7':
     resolution: {integrity: sha512-vUcD0uauS7EU2caukW8z5lJKtoGMokxNbJtBiwHgpqxEXokaHCBkQUmCHhjFB1VUTWdqj25QoMkMKzgjq+uhrw==}
@@ -18761,6 +18768,8 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
+
+  '@google/generative-ai@0.24.1': {}
 
   '@hono/node-server@1.19.7(hono@4.11.3)':
     dependencies:
