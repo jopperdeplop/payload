@@ -13,6 +13,7 @@ import { ProductVariants } from './collections/ProductVariants'
 import { Categories } from './collections/Categories'
 import { ProductCollections } from './collections/ProductCollections'
 import { Pages } from './collections/Pages'
+import { Posts } from './collections/Posts'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, ProductVariants, Categories, ProductCollections, Pages],
+  collections: [Users, Media, ProductVariants, Categories, ProductCollections, Pages, Posts],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',

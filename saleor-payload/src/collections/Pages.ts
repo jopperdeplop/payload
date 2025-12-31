@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { Hero, Content, CallToAction } from '../blocks'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -30,6 +31,12 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'layout',
+      type: 'blocks',
+      blocks: [Hero, Content, CallToAction],
+    },
+    // We keep 'content' for backward compatibility or simple pages synced from Saleor
     {
       name: 'content',
       type: 'richText',
